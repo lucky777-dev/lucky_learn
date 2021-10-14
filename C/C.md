@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    printf("Lucky world");
+    printf("Lucky world\n");
     return 0;
 }
 ```
@@ -25,7 +25,7 @@ These arguments are stocked in the `argv` array, and the number of arguments is 
 >> For example : `./test lucky 777`<br>
 `argc` = **3**<br>`argv[]` = {"**test**", "**lucky**", "**777**"}
 >
-> - **`printf("Lucky world");`**<br>
+> - **`printf();`**<br>
 The function to print text on the standard output (screen).<br>
 *(This function requires the library `<stdio.h>`)*
 >
@@ -62,7 +62,7 @@ int main() {
 }
 
 static void test() {
-    printf("Lucky world!");
+    printf("Lucky world!\n");
 }
 ```
 
@@ -81,8 +81,8 @@ static void test() {
 
 ```c
 unsigned langNumber;
-printf("How many languages do you know?");
-scanf("%d", &langNumber)
+printf("How many languages do you know? : ");
+scanf("%d", &langNumber);
 
 switch (langNumber)
 {
@@ -155,7 +155,7 @@ int main() {
 #include "test.h"
 
 void testFunction() {
-    printf("Lucky world!");
+    printf("Lucky world!\n");
 }
 ```
 
