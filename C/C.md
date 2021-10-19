@@ -1,5 +1,17 @@
 # C
 
+- [Reminder](#reminder)
+  * [First program](#first-program)
+  * [Comma truncation](#comma-truncation)
+  * [Global and static](#global-and-static)
+  * [Switch case](#switch-case)
+  * [Ternary condition](#ternary-condition)
+- [Prototypes](#prototypes)
+- [Headers](#headers)
+- [Pointers](#pointers)
+
+---
+
 # Reminder
 
 ## First program
