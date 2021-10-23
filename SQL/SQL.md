@@ -1,6 +1,159 @@
+- [SQL](#sql)
+  * [Languages](#languages)
+- [DML](#dml)
+    + [Structure](#structure)
+  * [SELECT](#select)
+    + [DISTINCT](#distinct)
+    + [WHERE](#where)
+      - [IN](#in)
+      - [BETWEEN](#between)
+      - [LIKE](#like)
+    + [null](#null)
+- [DDL](#ddl)
+  * [CREATE](#create)
+- [DROP (delete table)](#drop--delete-table-)
+
+---
+
 # SQL
 
-# CREATE (create table)
+## Languages
+
+> `SQL: `Structured Query Language<br>
+`DML: `Data Manipulation Language *`(INSERT/SELECT/UPDATE/DELETE)`*<br>
+`DDL: `Data Definition Language *`(create/delete tables or columns)`*<br>
+`DCL: `Data Control Language *`(tables access permissions)`*
+
+# DML
+
+Data Manipulation Language
+
+### Structure
+
+```sql
+SELECT [DISCTINCT] {expressions} [AS nickname]
+ FROM [tables] [AS nickname]
+    [WHERE condition]
+    [GROUP BY {attributes}]
+    [HAVING condition]
+    [ORDER BY {attributes} [ASC/DESC]];
+           or {column_nbr} [ASC/DESC]];
+```
+
+## SELECT
+
+```sql
+SELECT id, lastname
+ FROM customer;
+```
+> The result will be a list with all customer IDs and names.
+
+```sql
+SELECT *
+ FROM my_table;
+```
+> The result will be a list with all lines of the table.*my_table*
+
+### DISTINCT
+
+```sql
+SELECT DISTINCT city AS city
+ FROM customer;
+```
+> The result will be a list with all the cities of the customers, but <u>without duplicates</u>.<br>
+So even if more than one customer lives in `Brussels`, we will see it only once in our resulting list.<br>
+The column `customer_city` of the resulting list will be named `city`.
+
+### WHERE
+
+```sql
+SELECT lasttname, city, code
+ FROM customer
+    WHERE city == 'Brussels' AND code != 1070;
+```
+> The result will be a list with the name, city and code of all customers who live in `Brussels`, but **not** in the town with the postal code `1000`.
+
+#### IN
+
+```sql
+SELECT lastname, city
+ FROM customer
+    WHERE city in ('Brussels', 'Liege', 'Antwerp');
+```
+> The result will be a list with the name and the city of all customers who live in `Brussels`, `Liege` or `Antwerp`.
+
+#### BETWEEN
+
+```sql
+SELECT lastname, age
+ FROM customer
+    WHERE age BETWEEN 18 AND 25;
+```
+> The result will be a list with the name of the customers from `18` to `25` years old.
+
+#### LIKE
+
+```sql
+SELECT lastname, cat
+ FROM customer
+    WHERE lastname LIKE '%x%' AND cat LIKE 'B_';
+    /*
+    Equivalence in Linux:
+        %x%  =>  *x*
+        B_   =>   B?
+```
+> The result will be a list with the name and the category of all customers with a `e` in their name and with a category of two letters, starting with a `B`.
+>> Examples for lastname:
+>>  - `somethingxelse` *ok*<br>
+>>  - `xs` *ok*<br>
+>>  - `testxxx` *ok*<br>
+>>  - `x` *ok*<br>
+>>  - `blbl` *not ok!*
+>
+>> Examples for cat:
+>>  - `BA` *ok*<br>
+>>  - `B2` *ok*<br>
+>>  - `BAA` *not ok!*<br>
+>>  - `2A` *not ok!*<br>
+
+```sql
+SELECT product_name AS Product, 0.21*price AS Taxe
+ FROM product;
+    /*
+    price = price of the product
+    taxe = 21% of the price
+    */
+```
+> The result will be a list with the `name` and the `Taxe` of all products.
+
+### null
+
+```sql
+SELECT *
+ FROM customer
+    WHERE city IS null AND code IS NOT null;
+      /*
+      city == null -> NOT GOOD
+      code != null -> NOT GOOD
+      */
+```
+> `null` can't be compared to anything, not even with itself.<br>
+We need to use the word `IS` instead of `=`.
+
+
+
+
+
+
+
+
+
+
+# DDL
+
+Data Definition Language
+
+## CREATE
 
 ```sql
 CREATE TABLE test (
