@@ -28,7 +28,7 @@
 
 Data Manipulation Language
 
-### Structure
+## Structure
 
 ```sql
 SELECT [DISCTINCT] {expressions} [AS nickname]
@@ -41,6 +41,8 @@ SELECT [DISCTINCT] {expressions} [AS nickname]
 ```
 
 ## SELECT
+
+`Selection in a data base.`
 
 ```sql
 SELECT id, lastname
@@ -56,6 +58,8 @@ SELECT *
 
 ### DISTINCT
 
+`No duplicates.`
+
 ```sql
 SELECT DISTINCT city AS city
  FROM customer;
@@ -64,16 +68,18 @@ SELECT DISTINCT city AS city
 So even if more than one customer lives in `Brussels`, we will see it only once in our resulting list.<br>
 The column `customer_city` of the resulting list will be named `city`.
 
-### WHERE
+## WHERE
+
+`Condition.`
 
 ```sql
-SELECT lasttname, city, code
+SELECT lastname, city, code
  FROM customer
     WHERE city == 'Brussels' AND code != 1070;
 ```
 > The result will be a list with the name, city and code of all customers who live in `Brussels`, but **not** in the town with the postal code `1000`.
 
-#### IN
+### IN
 
 ```sql
 SELECT lastname, city
@@ -82,7 +88,7 @@ SELECT lastname, city
 ```
 > The result will be a list with the name and the city of all customers who live in `Brussels`, `Liege` or `Antwerp`.
 
-#### BETWEEN
+### BETWEEN
 
 ```sql
 SELECT lastname, age
@@ -91,7 +97,7 @@ SELECT lastname, age
 ```
 > The result will be a list with the name of the customers from `18` to `25` years old.
 
-#### LIKE
+### LIKE
 
 ```sql
 SELECT lastname, cat
@@ -140,10 +146,67 @@ SELECT *
 > `null` can't be compared to anything, not even with itself.<br>
 We need to use the word `IS` instead of `=`.
 
+## Agregates
 
+### COUNT(...)
 
+`Line counting.`
 
+```sql
+SELECT COUNT(lastname)
+ FROM customer;
+```
+> The result will be a list with the `count` of lines where lastname is `non-null`.
 
+```sql
+SELECT COUNT(DISTINCT city)
+ FROM customer;
+```
+> The result will be a list with the `count` of lines where city is `non-null`, but <u>without counting twice the same city</u>.
+
+### SUM(...)
+
+`Sum of values.`
+
+```sql
+SELECT SUM(price)
+ FROM product;
+```
+> The result will be a line with the `sum` of the price of all products in the table.<br>
+If we have 3 products at 5€, the result will be 15.
+
+### AVG(...)
+
+`Average of values.`
+
+```sql
+SELECT AVG(price)
+ FROM product;
+```
+> The result will be a line with the `average price` of all products in the table.<br>
+If we have 1 product at 10€, 1 at 15€ and one at 20€, the result will be 15.
+
+### MAX(...)
+
+`Maximum value.`
+
+```sql
+SELECT MAX(price)
+ FROM product;
+```
+> The result will be a line with the `maximum price` of all products in the table.<br>
+If we have 1 product at 10€, 1 at 15€ and one at 20€, the result will be 20.
+
+### MIN(...)
+
+`Minimum value.`
+
+```sql
+SELECT MIN(price)
+ FROM product;
+```
+> The result will be a line with the `minimum price` of all products in the table.<br>
+If we have 1 product at 10€, 1 at 15€ and one at 20€, the result will be 10.
 
 
 
