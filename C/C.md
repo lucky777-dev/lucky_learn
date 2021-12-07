@@ -12,6 +12,9 @@
 
 ---
 
+<img src="./sources/lucky777.png" width="77" style="border: 2px solid black; display: block; margin: 0px auto 0px">
+<p style="color: darkgray; text-align: center">lucky777</p>
+
 # Reminder
 
 ## First program
